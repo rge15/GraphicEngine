@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../SceneNode.hpp"
+#include "SceneNode.hpp"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -36,22 +36,19 @@ namespace Ocacho{
 			}
 
 		public:
-			std::size_t cameraActive_ { 0 };
-			// glm::vec3 position_ 	 { 0.0f, 0.0f, 0.0f };
-			glm::vec3 target_	 	 { 0.0f, 0.0f, 0.0f };
-			glm::vec3 upDirection_	 { 0.0f, 1.0f, 0.0f };
-			glm::vec3 cameraDirection_;
-			glm::vec3 rightDirection_;
+			std::size_t cameraActive_ 		{ 0 };
+			glm::vec3 	target_	 	 		{ 0.0f, 0.0f, 0.0f };
+			glm::vec3 	upDirection_	 	{ 0.0f, 1.0f, 0.0f };
+			glm::vec3 	cameraDirection_;
+			glm::vec3 	rightDirection_;
 
 			Camera( const std::size_t p_activeCamera , 
 					const glm::vec3 p_pos, 
 					const glm::vec3 p_lookAt = glm::vec3(0.0f, 0.0f, 0.0f)) :
+					SceneNode( p_pos ),
 					cameraActive_ { p_activeCamera },
-					//TODO : Preguntar sobre inicializadores por herencia y construcción
-					// position_ { p_pos }, 
 					target_ { p_lookAt }
 			{
-				position_ = p_pos;
 				CalculateCameraUpAxis();
 			};
 
@@ -59,13 +56,11 @@ namespace Ocacho{
 					const float p_posx, const float p_posy, const float p_posz,
 					const float p_targetx = 0, 
 					const float p_targety = 0, 
-					const float p_targetz = 0) :
+					const float p_targetz = 0) : 
+					SceneNode( glm::vec3(p_posx, p_posy, p_posz) ),
 					cameraActive_ { p_activeCamera },
-					//TODO : Preguntar sobre inicializadores por herencia y construcción
-					//position_ { glm::vec3(p_posx, p_posy, p_posz) }, 
 					target_ { glm::vec3(p_targetx, p_targety, p_targetz) }
 			{
-				position_ = glm::vec3(p_posx, p_posy, p_posz);
 				CalculateCameraUpAxis();
 			};
 
@@ -80,6 +75,19 @@ namespace Ocacho{
 			{
 				return glm::lookAt(position_, target_, upDirection_);
 			}
+
+			void SetTarget( const glm::vec3 p_target )
+			{
+				target_ = p_target;
+			}
+
+			void SetTarget( const float p_targetX, 
+							const float p_targetY, 
+							const float p_targetZ)
+			{
+				target_ = glm::vec3( p_targetX, p_targetY, p_targetZ);
+			}
+
 
 	};
 }

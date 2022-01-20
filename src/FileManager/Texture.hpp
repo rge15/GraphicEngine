@@ -1,7 +1,5 @@
 #pragma once
 
-#include "../../stb_image.h"
-
 #include <string_view>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>

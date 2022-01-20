@@ -8,7 +8,7 @@
 #include <assimp/scene.h>	
 #include <assimp/postprocess.h>
 
-#include "SceneComponents/Model.hpp"
+#include "Scene/Model.hpp"
 #include "FileManager/FileManagerFlags.hpp"
 
 
@@ -20,8 +20,7 @@ namespace Ocacho
 			std::unordered_map<std::size_t, std::unique_ptr<Mesh>* const>		meshFileMemory_;
 			std::unordered_map<std::size_t, std::unique_ptr<Texture>* const>	textureFileMemory_;
 			std::unordered_map<std::size_t, std::unique_ptr<Material>* const>	materialFileMemory_;
-			// std::unordered_map<std::size_t, Material*>	materialFileMemory_;
-			// std::unordered_map<std::size_t, Shader*>		shaderFileMemory_;
+			std::unordered_map<std::size_t, std::unique_ptr<Shader>* const>		shaderFileMemory_;
 
 			std::vector<std::unique_ptr<Mesh>>		loadedMeshes_;
 			std::vector<std::unique_ptr<Texture>>	loadedTextures_;
@@ -31,6 +30,7 @@ namespace Ocacho
 			std::size_t meshIndex_ { 0 };
 			std::size_t textureIndex_ { 0 };
 			std::size_t materialIndex_ { 0 };
+			std::size_t shaderIndex_ { 0 };
 
 			// *** Métodos cargar malla
 			std::unique_ptr<Mesh> GetMeshFromFile(const std::string_view& p_path );
@@ -64,7 +64,6 @@ namespace Ocacho
 			// *** Método cargar material
 
 			// *** Método crear/cargar shader 
-			//TODO : Me he quedado aquí, seguir creando el shader y pasar a cargar modelos
 			std::unique_ptr<Shader> GetShaderFromFiles(
 				const std::string_view& p_vertexPath,
 				const std::string_view& p_fragmentPath
@@ -99,8 +98,6 @@ namespace Ocacho
 				loadedTextures_.emplace_back( std::move(GetTextureFromFile(p_texturePath)) );
 				textureFileMemory_.insert( { textureIndex_, &loadedTextures_[textureIndex_] } );
 
-				std::cout << loadedTextures_.at(0).get() << '\n';
-
 				return textureIndex_++;
 			}
 			// *** Métodos cargar texturas
@@ -116,11 +113,15 @@ namespace Ocacho
 			// *** Métodos cargar materiales
 
 			// *** Métodos cargar shaders
-			std::size_t AddShader(	const std::string_view& p_vertexPath,
+			std::size_t LoadShader(	const std::string_view& p_vertexPath,
 									const std::string_view& p_fragmentPath )
 			{
 				loadedShaders_.emplace_back( 
-					std::move( GetShaderFromFiles(p_vertexPath, p_fragmentPath)));
+					std::move( GetShaderFromFiles(p_vertexPath, p_fragmentPath) ));
+
+				shaderFileMemory_.insert( { shaderIndex_, &loadedShaders_[shaderIndex_] } );
+
+				return shaderIndex_++;
 			}
 			// *** Métodos cargar shaders
 
@@ -141,6 +142,12 @@ namespace Ocacho
 			{
 				assert(!(p_indexValue >= materialIndex_ || p_indexValue < 0 ));
 				return materialFileMemory_.at(p_indexValue)->get();
+			}
+
+			Shader* getShader(const std::size_t p_indexValue)
+			{
+				assert(!(p_indexValue >= shaderIndex_ || p_indexValue < 0 ));
+				return shaderFileMemory_.at(p_indexValue)->get();
 			}
 
 	};

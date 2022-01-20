@@ -14,9 +14,8 @@ int main()
 
 	std::size_t TextureID = fileManager_->LoadTexture("/home/rodrigo/Escritorio/PersonalProj/Repositories/GraphicEngine/models/Untitled.png");
 
-	std::size_t material1Textures[] = { TextureID };
-	std::size_t MaterialID = fileManager_->AddMaterial( material1Textures );
-
+	std::size_t ShaderID = fileManager_->LoadShader("/home/rodrigo/Escritorio/PersonalProj/Repositories/GraphicEngine/src/Shaders/Texture.vs",
+													"/home/rodrigo/Escritorio/PersonalProj/Repositories/GraphicEngine/src/Shaders/Texture.fs");
 
 	//Aquí se cargan los ficheros
 

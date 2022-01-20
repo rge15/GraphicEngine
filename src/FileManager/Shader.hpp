@@ -1,20 +1,21 @@
 #pragma once
 
 #include <glad/glad.h>
-
 #include <assert.h>
 #include <string>
 #include <fstream>
 #include <sstream>
 #include <iostream>
-
 #include <glm/gtc/type_ptr.hpp>
+
+#include "../utilities/RenderStructs.hpp"
 
 namespace Ocacho
 {
 	class Shader{
 		private:
-			void ReadAndCompileShader(const char* p_vertexPath, const char* p_fragmentPath)
+			void ReadAndCompileShader(	const std::string_view& p_vertexPath, 
+										const std::string_view& p_fragmentPath)
 			{
 				const std::string vertexShaderCode   = ReadShader(p_vertexPath);
 				const std::string fragmentShaderCode = ReadShader(p_fragmentPath);
@@ -26,14 +27,14 @@ namespace Ocacho
 			
 			};
 			
-			std::string ReadShader(const std::string& p_shaderPath);
+			std::string ReadShader(const std::string_view& p_shaderPath);
 			uint8_t 	CompileShader(const char* p_shaderCode, GLenum p_shaderType);
 			void 		CreateShaderProgram(const int p_vShaderID, const int p_frShaderID);
 
 		public:
 			glID ID_ { 0 };
 
-			Shader(const char* p_vertexPath, const char* p_fragmentPath)
+			Shader(const std::string_view& p_vertexPath, const std::string_view& p_fragmentPath)
 			{
 				ReadAndCompileShader(p_vertexPath, p_fragmentPath);
 			};

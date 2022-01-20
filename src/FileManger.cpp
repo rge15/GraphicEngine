@@ -89,7 +89,7 @@ namespace Ocacho
 		return std::make_unique<Texture>(p_path);
 	}
 
-	std::vector<Texture*> FileManager::LoadMaterialTextures( const std::size_t p_textureIndex[])
+	std::vector<Texture*> FileManager::LoadMaterialTextures(const std::size_t p_textureIndex[])
 	{
 		std::vector<Texture*> textures;
 		std::size_t sizeArray = sizeof(p_textureIndex)/sizeof(p_textureIndex[0]);
@@ -102,6 +102,14 @@ namespace Ocacho
 			textures.emplace_back( getTexture( p_textureIndex[i]) );
 
 		return textures;
+	}
+
+	std::unique_ptr<Shader> FileManager::GetShaderFromFiles(
+		const std::string_view& p_vertexPath,
+		const std::string_view& p_fragmentPath)
+	{
+		std::unique_ptr<Shader> shader = std::make_unique<Shader>(p_vertexPath, p_fragmentPath);
+		return shader;
 	}
 
 }

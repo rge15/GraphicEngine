@@ -19,7 +19,7 @@ namespace Ocacho
 	class Device
 	{
 		private:
-			std::unique_ptr<Scene> scene_ { std::make_unique<Scene>() };
+			std::unique_ptr<Scene> scene_ { std::make_unique<Scene>( getAspectRatio() ) };
 			std::unique_ptr<FileManager> fileManager_ { std::make_unique<FileManager>() };
 			std::unique_ptr<VideoDriver> videoDriver_ { std::make_unique<VideoDriver>() };
 
@@ -81,6 +81,20 @@ namespace Ocacho
 				//Driver Set Callbacks
 				SetWindowCallbacks();
 			}
+
+			// void error_callback(int p_error, const char* p_desc)
+			// {
+			//     std::cout << "Error de GLFW : " << p_error << ". Descripcion : " << p_desc << "\n";
+			// };
+
+			// void framebuffer_size_callback(GLFWwindow* p_window, int p_width, int p_height)
+			// {
+			//     glViewport(0, 0, p_width, p_height);
+			// 	//Pregunta TAG la projection
+			// 	width_ = p_width;
+			// 	height_ = p_height;
+			// 	scene_->SetProjection(getAspectRatio());
+			// }
 
 	};
 }

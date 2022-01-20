@@ -10,8 +10,15 @@ namespace Ocacho
 			glm::vec3 rotation_;
 			glm::vec3 scale_;
 
-			SceneNode();
-			~SceneNode();
+			SceneNode(	const glm::vec3 p_pos = glm::vec3(0, 0, 0), 
+						const glm::vec3 p_rot = glm::vec3(0, 0, 0), 
+						const glm::vec3 p_scale = glm::vec3(1, 1, 1)):
+						position_ { p_pos },
+						rotation_ { p_rot },
+						scale_ { p_scale }
+			{}
+
+			~SceneNode(){};
 
 			void SetPosition( const glm::vec3 p_pos)
 			{

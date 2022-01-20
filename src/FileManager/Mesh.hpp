@@ -6,8 +6,6 @@
 #include <string>
 #include <glm/glm.hpp>
 
-
-#include "../SceneNode.hpp"
 #include "../utilities/RenderStructs.hpp"
 #include "Shader.hpp"
 
@@ -40,6 +38,6 @@ namespace Ocacho
 
 			void SetUpMesh();
 			
-			void Draw(const Shader p_shader);
+			void Draw();
 	};
 }

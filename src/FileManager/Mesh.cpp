@@ -29,11 +29,8 @@ namespace Ocacho
 		glBindVertexArray(0);
 	}
 
-	void Mesh::Draw(const Shader p_shader)
+	void Mesh::Draw()
 	{
-		
-
-        
 		// *** Esto Será para cargar el material en memoria
 		// unsigned int diffuseNr  = 1;
         // unsigned int specularNr = 1;

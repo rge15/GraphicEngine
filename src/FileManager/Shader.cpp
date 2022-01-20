@@ -2,7 +2,7 @@
 
 namespace Ocacho{
 
-	std::string Shader::ReadShader(const std::string& p_shaderPath)
+	std::string Shader::ReadShader(const std::string_view& p_shaderPath)
 	{
 		std::string	shaderCode;
 		std::ifstream	shaderFile;
@@ -11,7 +11,7 @@ namespace Ocacho{
 
 		try
 		{
-			shaderFile.open(p_shaderPath);
+			shaderFile.open(p_shaderPath.data());
 			std::stringstream shaderStream;
 
 			shaderStream << shaderFile.rdbuf();
