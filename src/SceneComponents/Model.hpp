@@ -4,6 +4,7 @@
 #include "Mesh.hpp"
 #include "Shader.hpp"
 #include "Material.hpp"
+#include "Texture.hpp"
 
 namespace Ocacho
 {

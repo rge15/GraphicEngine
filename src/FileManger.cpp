@@ -3,23 +3,16 @@
 
 namespace Ocacho
 {
-	std::unique_ptr<Mesh> FileManager::GetMeshFromFile(const std::string& p_path)
+	std::unique_ptr<Mesh> FileManager::GetMeshFromFile(const std::string_view& p_path)
 	{
 		//Cargamos realmente el archivo
 		Assimp::Importer modelImporter;
-		const aiScene* const scene = modelImporter.ReadFile(p_path, loadMeshFlags);
+		const aiScene* const scene = modelImporter.ReadFile(p_path.data(), loadMeshFlags);
 		assert(scene);
 
 		std::vector<Vertex>  meshVertex;
 		std::vector<unsigned int> meshIndex;
 		std::unique_ptr<Mesh> loadedMesh;
-
-
-		//TODO : Para evitar duplicados habrña que guardar el directorio desde donde se carga
-		// std::string finalPath { p_path.substr(0, p_path.find_last_of('/')) };		
-		//directory_ = finalPath;
-
-		// const aiMesh* const meshNode = SearchMeshInScene( scene );
 
 		LoadMeshFromFile( SearchMeshInScene( scene ), meshVertex, meshIndex);
 
@@ -63,7 +56,6 @@ namespace Ocacho
 			}else
 				vertex.textureCoords = glm::vec2(0.0f, 0.0f);
 				
-			// TODO : Preguntar o ver que es más eficiente
 			p_vertex.emplace_back(vertex);
 		}
 	}
@@ -89,6 +81,27 @@ namespace Ocacho
 		//Checkeamos que haya alguna malla para cargar
 		assert(p_scene->mNumMeshes);
 		return p_scene->mMeshes[0];
+	}
+
+	std::unique_ptr<Texture> FileManager::GetTextureFromFile(const std::string_view& p_path )
+	{
+		//Creo la textura y la devuelvo
+		return std::make_unique<Texture>(p_path);
+	}
+
+	std::vector<Texture*> FileManager::LoadMaterialTextures( const std::size_t p_textureIndex[])
+	{
+		std::vector<Texture*> textures;
+		std::size_t sizeArray = sizeof(p_textureIndex)/sizeof(p_textureIndex[0]);
+
+		assert(!(sizeArray <= 0));
+
+		textures.reserve(sizeArray);
+
+		for(std::size_t i { 0 } ; i < sizeArray ; i++)
+			textures.emplace_back( getTexture( p_textureIndex[i]) );
+
+		return textures;
 	}
 
 }

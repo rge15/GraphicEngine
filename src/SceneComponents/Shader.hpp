@@ -31,7 +31,7 @@ namespace Ocacho
 			void 		CreateShaderProgram(const int p_vShaderID, const int p_frShaderID);
 
 		public:
-			int ID_ {-1};
+			glID ID_ { 0 };
 
 			Shader(const char* p_vertexPath, const char* p_fragmentPath)
 			{

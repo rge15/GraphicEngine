@@ -8,6 +8,7 @@
 
 #include "../utilities/RenderStructs.hpp"
 #include "Shader.hpp"
+#include "Texture.hpp"
 
 namespace Ocacho
 {
@@ -16,31 +17,23 @@ namespace Ocacho
 		private:
 
 		public:
-			std::vector<Texture> textures_;
-			glm::vec3 			 baseColor_ { 1.0, 0.0, 0.0 };
-			const Shader*		 shader_;
-
-			Material( const Shader* const p_shader, 
-					  const glm::vec3 p_baseColor) :
-					  shader_ { p_shader },
-					  baseColor_ { p_baseColor }
-			{}
+			std::vector<Texture*>	textures_;
+			glm::vec3 			 	baseColor_ { 1.0, 0.0, 0.0 };
 			
-			Material(const std::vector<Texture> p_textures) :
+			Material(const std::vector<Texture*> p_textures):
 					 textures_ { p_textures }
 			{}
 
-			Material(const std::vector<Texture> p_textures,
-					 const Shader* const p_shader) :
-					 textures_ { p_textures },
-					 shader_ { p_shader }
-			{}
+			~Material(){};
 
-			~Material();
+			void SetBaseColor( const glm::vec4 p_color )
+			{
+				baseColor_ = p_color;
+			}
 
-			void PrepareMaterialForRendering();
+			// void PrepareMaterialForRendering();
 
-			void TextureMaterial();
-			void BaseColorMaterial();
+			// void TextureMaterial();
+			// void BaseColorMaterial();
 	};
 }

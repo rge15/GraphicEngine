@@ -1,5 +1,5 @@
 APP 	:= opengl
-CCFLAGS	:= -Wall -pedantic
+CCFLAGS	:= -Wall -g -pedantic
 CC		:= g++
 MKDIR	:= mkdir -p
 SRC 	:= src

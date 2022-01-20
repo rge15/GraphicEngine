@@ -1,5 +1,6 @@
 #pragma once
 
+#include <glm/glm.hpp>
 namespace Ocacho
 {
 
@@ -14,13 +15,6 @@ namespace Ocacho
 		glm::vec2 textureCoords;
 		// glm::ivec4 JointInfluence;
 		// glm::vec4  InfluenceWeight;
-	};
-	
-	struct Texture
-	{
-		unsigned int		ID;
-		std::string_view	type;
-		std::string_view	path;
 	};
 
 }
