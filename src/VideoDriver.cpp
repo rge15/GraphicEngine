@@ -7,9 +7,13 @@ namespace Ocacho
 		int width, height;
 
 		glfwGetFramebufferSize(window_, &width, &height);
-		int ratio = width / (float) height;
+		float ratio = (float)width / (float)height;
+
+		scene_->SetProjection(ratio);
 
 		glViewport(0, 0, width, height);
+
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 	}
 

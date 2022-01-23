@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Scene.hpp"
+
 #include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -12,6 +14,8 @@ namespace Ocacho
 	{
 		private:
 			GLFWwindow* window_ { nullptr };
+
+			Scene* scene_;
 		
 			void SetWindow(GLFWwindow* const p_window)
 			{
@@ -38,6 +42,13 @@ namespace Ocacho
 			{
 				glfwMakeContextCurrent(p_window);
 				SetWindow(p_window);
+			}
+
+			void SetScene( Scene* const p_scene )
+			{
+				assert(p_scene != nullptr);
+
+				scene_ = p_scene;
 			}
 
 			void BeginScene();

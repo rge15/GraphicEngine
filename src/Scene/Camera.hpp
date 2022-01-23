@@ -10,7 +10,7 @@
 
 namespace Ocacho{
 
-	class Camera : SceneNode
+	class Camera : public SceneNode
 	{
 		private:
 			void SetCameraDirection()
@@ -42,9 +42,9 @@ namespace Ocacho{
 			glm::vec3 	cameraDirection_;
 			glm::vec3 	rightDirection_;
 
-			Camera( const std::size_t p_activeCamera , 
-					const glm::vec3 p_pos, 
-					const glm::vec3 p_lookAt = glm::vec3(0.0f, 0.0f, 0.0f)) :
+			Camera( const glm::vec3 p_pos = glm::vec3(1.0f, 1.0f, 1.0f), 
+					const glm::vec3 p_lookAt = glm::vec3(0.0f, 0.0f, 0.0f),
+					const std::size_t p_activeCamera  = 1) :
 					SceneNode( p_pos ),
 					cameraActive_ { p_activeCamera },
 					target_ { p_lookAt }
@@ -52,23 +52,11 @@ namespace Ocacho{
 				CalculateCameraUpAxis();
 			};
 
-			Camera( const std::size_t p_activeCamera,
-					const float p_posx, const float p_posy, const float p_posz,
-					const float p_targetx = 0, 
-					const float p_targety = 0, 
-					const float p_targetz = 0) : 
-					SceneNode( glm::vec3(p_posx, p_posy, p_posz) ),
-					cameraActive_ { p_activeCamera },
-					target_ { glm::vec3(p_targetx, p_targety, p_targetz) }
-			{
-				CalculateCameraUpAxis();
-			};
-
-			~Camera();
+			~Camera(){};
 
 			glm::vec3 GetCameraViewDirection()
 			{
-				return glm::normalize( target_ - position_ );
+				return glm::normalize( position_ - target_ );
 			}
 
 			glm::mat4 GetViewMatrix()
@@ -86,6 +74,13 @@ namespace Ocacho{
 							const float p_targetZ)
 			{
 				target_ = glm::vec3( p_targetX, p_targetY, p_targetZ);
+			}
+
+			void LogCameraData()
+			{
+				std::cout << "Camera pos : " << position_.x << " , " << position_.y << " , " << position_.z << '\n';
+				std::cout << "Camera tar : " << target_.x << " , " << target_.y << " , " << target_.z << '\n';
+				std::cout << "Camera upDir : " << upDirection_.x << " , " << upDirection_.y << " , " << upDirection_.z << '\n';
 			}
 
 

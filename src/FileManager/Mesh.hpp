@@ -21,9 +21,9 @@ namespace Ocacho
 			//en futuros upgrades hará falta un vector
 			//de materials
 
-			glID VBO;
-			glID VAO;
-			glID EBO;
+			glID VBO_;
+			glID VAO_;
+			glID EBO_;
 		
 		public:
 			Mesh( const std::vector<Vertex> p_vertexList,
@@ -31,6 +31,10 @@ namespace Ocacho
 				  vertex_ { p_vertexList },
 				  index_ { p_indexList }
 				{
+				//	for(int i = 0 ; i < vertex_.size() ; i++)
+				//	{
+				//		std::cout << "Vertex " << i << " : " << vertex_.at(i).position.x << " , " << vertex_.at(i).position.y << " , " << vertex_.at(i).position.z << '\n';
+				//	}
 					SetUpMesh();
 				}
 

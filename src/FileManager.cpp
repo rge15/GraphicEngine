@@ -1,4 +1,4 @@
-#include "FileManger.hpp"
+#include "FileManager.hpp"
 
 
 namespace Ocacho
@@ -17,6 +17,8 @@ namespace Ocacho
 		LoadMeshFromFile( SearchMeshInScene( scene ), meshVertex, meshIndex);
 
 		loadedMesh =  std::make_unique<Mesh>( meshVertex, meshIndex );
+
+		// std::cout << "Mesh cargada :" << loadedMesh.get() << '\n';
 
 		return  loadedMesh;
 	}

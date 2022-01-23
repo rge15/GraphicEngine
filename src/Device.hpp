@@ -2,7 +2,7 @@
 
 #include "Scene.hpp"
 #include "VideoDriver.hpp"
-#include "FileManger.hpp"
+#include "FileManager.hpp"
 
 #include <iostream>
 #include <memory>
@@ -19,9 +19,9 @@ namespace Ocacho
 	class Device
 	{
 		private:
-			std::unique_ptr<Scene> scene_ { std::make_unique<Scene>( getAspectRatio() ) };
 			std::unique_ptr<FileManager> fileManager_ { std::make_unique<FileManager>() };
 			std::unique_ptr<VideoDriver> videoDriver_ { std::make_unique<VideoDriver>() };
+			std::unique_ptr<Scene> scene_ { std::make_unique<Scene>( getAspectRatio() ) };
 
 			GLFWwindow* window_;
 			
@@ -38,6 +38,8 @@ namespace Ocacho
 					windowTitle_ { p_windowTitle }
 					{
 						InitWindow();
+						scene_->setFileManagerAcces( fileManager_.get() );
+						videoDriver_->SetScene( scene_.get() );
 					}
 			
 			~Device(){}
@@ -82,19 +84,7 @@ namespace Ocacho
 				SetWindowCallbacks();
 			}
 
-			// void error_callback(int p_error, const char* p_desc)
-			// {
-			//     std::cout << "Error de GLFW : " << p_error << ". Descripcion : " << p_desc << "\n";
-			// };
 
-			// void framebuffer_size_callback(GLFWwindow* p_window, int p_width, int p_height)
-			// {
-			//     glViewport(0, 0, p_width, p_height);
-			// 	//Pregunta TAG la projection
-			// 	width_ = p_width;
-			// 	height_ = p_height;
-			// 	scene_->SetProjection(getAspectRatio());
-			// }
 
 	};
 }

@@ -3,14 +3,6 @@
 
 namespace Ocacho
 {
-	// void Material::PrepareMaterialForRendering()
-	// {
-	// 	if(textures_.size() != 0 )
-	// 		TextureMaterial();
-	// 	else
-	// 		BaseColorMaterial();
-	// }
-
 	// void Material::TextureMaterial()
 	// {
 	// 	unsigned int diffuseNr  = 1;
@@ -41,8 +33,19 @@ namespace Ocacho
 	// 	}
 	// }
 
-	// void Material::BaseColorMaterial()
-	// {
-	// 	shader_->SetFloat3("inColor", baseColor_);
-	// }
+	void Material::UseMaterial(Shader* const p_shader)
+	{
+		SetShaderColor(p_shader);
+		SetShaderTextures(p_shader);
+	}
+
+	void Material::SetShaderColor(Shader* const p_shader)
+	{
+		p_shader->SetFloat3("u_baseColor", baseColor_);
+	}
+
+	void Material::SetShaderTextures(Shader* const p_shader)
+	{
+
+	}
 }

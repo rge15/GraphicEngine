@@ -62,7 +62,7 @@ namespace Ocacho
 			}
 
 			void SetM4(const std::string &p_name, glm::mat4 p_value) const
-			{ 
+			{
 				glUniformMatrix4fv(glGetUniformLocation(ID_, p_name.c_str()), 1, GL_FALSE, glm::value_ptr(p_value));
 			}
 

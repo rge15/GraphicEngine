@@ -3,18 +3,63 @@
 
 namespace Ocacho
 {
-	SceneNode* Scene::AddCamera()
+	SceneNode* Scene::AddCamera(
+		const glm::vec3 p_pos, 
+		const glm::vec3 p_lookAt,
+		const std::size_t p_activeCamera)
 	{
-		//Make unique_ptr
-		//Push Back
-		//Return unique_ptr.get()
+		cameras_.emplace_back( std::make_unique<Camera>(p_pos, p_lookAt, p_activeCamera) );
+
+		return cameras_.back().get();
 	}
 
-	SceneNode* Scene::AddModel()
+	SceneNode* Scene::AddModel(
+		const std::size_t p_mesh, 
+		const std::size_t p_material, 
+		const glm::vec3 p_pos)
 	{
-		//Make unique_ptr
-		//Push Back
-		//Return unique_ptr.get()
+		models_.emplace_back( 
+			std::make_unique<Model>(
+				deviceFileManager_->getMesh(p_mesh),
+				deviceFileManager_->getMaterial(p_material),
+				p_pos));
+
+		return models_.back().get();
 	}
+	
+	void Scene::DrawAll()
+	{
+		shader_->UseShader();
+		SetSceneShadersUniforms();
+		SetSceneCameraShaderUniforms();
+		DrawModels();
+	}
+
+	void Scene::SetSceneShadersUniforms()
+	{
+		shader_->SetM4("u_projection", projection_ );
+	}
+
+	void Scene::SetSceneCameraShaderUniforms()
+	{
+		for(std::size_t i = 0 ; i < cameras_.size() ; i++ )
+		{
+			auto* camera = static_cast<Camera *>(cameras_.at(i).get()); 
+			if( camera->cameraActive_ )
+			{
+				shader_->SetM4("u_view", camera->GetViewMatrix());
+			}
+		}
+	}
+
+	void Scene::DrawModels()
+	{
+		for(std::size_t i = 0 ; i < models_.size() ; i++)
+		{
+			auto* model = static_cast<Model*>( models_.at(i).get());
+			model->Draw( shader_ );
+		}
+	}
+
 
 }

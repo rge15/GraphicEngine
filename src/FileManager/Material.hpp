@@ -31,9 +31,12 @@ namespace Ocacho
 				baseColor_ = p_color;
 			}
 
-			// void PrepareMaterialForRendering();
+			void UseMaterial(Shader* const p_shader);
 
-			// void TextureMaterial();
-			// void BaseColorMaterial();
+			void SetShaderColor(Shader* const p_shader);
+
+			void SetShaderTextures(Shader* const p_shader);
+
+
 	};
 }
