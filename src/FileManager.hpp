@@ -110,6 +110,14 @@ namespace Ocacho
 			
 				return materialIndex_++;
 			}
+
+			std::size_t AddMaterial( const glm::vec3 p_color )
+			{
+				loadedMaterials_.emplace_back( std::make_unique<Material>( p_color ));
+				materialFileMemory_.insert( { materialIndex_, &loadedMaterials_[materialIndex_] } );
+			
+				return materialIndex_++;
+			}
 			// *** Métodos cargar materiales
 
 			// *** Métodos cargar shaders

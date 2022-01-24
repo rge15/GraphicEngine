@@ -20,6 +20,8 @@ int main()
 
 	std::size_t MaterialID = fileManager_->AddMaterial(materialList);
 
+	std::size_t MaterialID2 = fileManager_->AddMaterial(glm::vec3(1.0, 0.3, 1.0));
+
 	std::size_t ShaderID = fileManager_->LoadShader("/home/rodrigo/Escritorio/PersonalProj/Repositories/GraphicEngine/shaders/baseVertexShader.vs",
 													"/home/rodrigo/Escritorio/PersonalProj/Repositories/GraphicEngine/shaders/baseFragmentShader.fs");
 
@@ -28,18 +30,20 @@ int main()
 	//Aquí se cargan los nodos de la escena
 
 	Ocacho::SceneNode* camera = scene_->AddCamera();
-	Ocacho::SceneNode* model1 = scene_->AddModel(MayaID, MaterialID);
-	// Ocacho::SceneNode* model2 = scene_->AddModel(MayaID2, MaterialID);
-	// Ocacho::SceneNode* model3 = scene_->AddModel(MayaID, MaterialID);
+	Ocacho::SceneNode* model1 = scene_->AddModel(MayaID, MaterialID2);
+	Ocacho::SceneNode* model2 = scene_->AddModel(MayaID2, MaterialID);
+	Ocacho::SceneNode* model3 = scene_->AddModel(MayaID, MaterialID);
 	
 	
 	model1->SetScale(0.1, 0.1, 0.1);
-	
-	// model2->SetScale(0.3, 0.1, 0.3);
-	// model2->SetPosition(2,1,1);
+	model1->SetRotation(0, 3.14, 0);
+	model1->SetPosition(0, 0, 0);
 
-	// model3->SetScale( 0.4, 0.1, 0.1 );
-	// model3->SetPosition(-2, -1, -1);
+	model2->SetScale(0.3, 0.1, 0.3);
+	model2->SetPosition(2,1,1);
+
+	model3->SetScale( 0.4, 0.1, 0.1 );
+	model3->SetPosition(-2, -1, -1);
 
 
 	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);

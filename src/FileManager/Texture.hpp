@@ -21,7 +21,6 @@ namespace Ocacho
 			void SetUpTexture(const std::string_view& p_path);
 
 		public:
-
 			Texture(const std::string_view& p_texturePath)
 			{
 				SetUpTexture(p_texturePath);
@@ -34,6 +33,11 @@ namespace Ocacho
 			void SetTextureType(const std::string_view& p_type)
 			{
 				type_ = p_type;
+			}
+
+			glID getID()
+			{
+				return ID_;
 			}
 
 	};

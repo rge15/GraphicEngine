@@ -68,7 +68,7 @@ namespace Ocacho
 
 			void SetFloat3(const std::string &p_name, glm::vec3 p_value) const
 			{ 
-				glUniform3fv(glGetUniformLocation(ID_, p_name.c_str()), 3, glm::value_ptr(p_value));
+				glUniform3fv(glGetUniformLocation(ID_, p_name.c_str()), 1, glm::value_ptr(p_value));
 			}
 
 	};

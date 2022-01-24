@@ -15,13 +15,22 @@ namespace Ocacho
 	class Material
 	{
 		private:
+			void LoadTexturesInShader(Shader* const p_shader);
+
+			void LoadBaseColorInShader(Shader* const p_shader);
+
+			void SetShaderData(Shader* const p_shader);
 
 		public:
 			std::vector<Texture*>	textures_;
-			glm::vec3 			 	baseColor_ { 1.0, 0.0, 0.0 };
+			glm::vec3 			 	baseColor_ { 0.3, 0.3, 0.3 };
 			
 			Material(const std::vector<Texture*> p_textures):
 					 textures_ { p_textures }
+			{}
+
+			Material(const glm::vec3 p_baseColor):
+					 baseColor_ { p_baseColor }
 			{}
 
 			~Material(){};
@@ -32,11 +41,6 @@ namespace Ocacho
 			}
 
 			void UseMaterial(Shader* const p_shader);
-
-			void SetShaderColor(Shader* const p_shader);
-
-			void SetShaderTextures(Shader* const p_shader);
-
 
 	};
 }

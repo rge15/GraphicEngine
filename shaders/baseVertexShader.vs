@@ -16,8 +16,8 @@ void main()
 {
     //Aquí indicamos la posición del vertice
     gl_Position = u_projection * u_view * u_model * vec4(aPos, 1.0);
-    // gl_Position = vec4(aPos, 1.0);
-    // TexCoord = vec2(aTextureCoord);
-    // ourColor = u_baseColor;
-    ourColor = vec3(1.0, 0.0, 0.0);
+    //Aquñi seteamos las UV Coords
+    TexCoord = vec2(aTextureCoord);
+    //Aquñi seteamos el color base
+    ourColor = u_baseColor;
 }

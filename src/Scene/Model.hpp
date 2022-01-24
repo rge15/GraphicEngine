@@ -40,7 +40,6 @@ namespace Ocacho
 				SetModelMatrix(p_shader);
 				material_->UseMaterial(p_shader);
 				meshes_->Draw();
-				// std::cout << "Mesh del modelo :" << meshes_ << '\n'; 
 			}
 
 			void SetModelMatrix(Shader* const p_shader)
@@ -52,11 +51,16 @@ namespace Ocacho
 			void CalculateModelMatrix()
 			{
 				model_ = glm::mat4(1.0f);
-				// model = glm::translate(model , glm::vec3(0.5f, -0.5f, -0.5f));
+
+				//Scale
 				model_ = glm::scale(model_, scale_);
-				//model_ = glm::rotate(model_, rotation_.rotationAngle_, rotation_.rotationAxis_ );
+
+				//Rotation
+				glm::quat quaternion(rotation_);
+				model_ = model_ * glm::mat4_cast(quaternion);
+
+				//Translation
 				model_ = glm::translate(model_, position_);
-				// model = glm::rotate(model, );
 			}
 	};
 }
