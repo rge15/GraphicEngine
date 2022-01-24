@@ -2,6 +2,11 @@
 
 #include <glm/glm.hpp>
 
+//Aquí No se pq me reconoce el include pero no me lo pilla el intelissense ni el compiler
+#include <glm/gtc/quaternion.hpp>
+#include <glm/gtx/quaternion.hpp>
+
+
 struct quaterion
 {
 	glm::vec3 rotationAxis_;
@@ -13,6 +18,8 @@ namespace Ocacho
 	class SceneNode{		
 		public:
 			glm::vec3 position_;
+			// TODO : Aquí es meter un vec3 con los angulos en grados
+			// TODO : Y en model meter el cambio de degrees a quaterion
 			quaterion rotation_;
 			glm::vec3 scale_;
 

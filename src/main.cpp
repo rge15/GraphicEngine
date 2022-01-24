@@ -29,17 +29,17 @@ int main()
 
 	Ocacho::SceneNode* camera = scene_->AddCamera();
 	Ocacho::SceneNode* model1 = scene_->AddModel(MayaID, MaterialID);
-	Ocacho::SceneNode* model2 = scene_->AddModel(MayaID2, MaterialID);
-	Ocacho::SceneNode* model3 = scene_->AddModel(MayaID, MaterialID);
+	// Ocacho::SceneNode* model2 = scene_->AddModel(MayaID2, MaterialID);
+	// Ocacho::SceneNode* model3 = scene_->AddModel(MayaID, MaterialID);
 	
 	
 	model1->SetScale(0.1, 0.1, 0.1);
 	
-	model2->SetScale(0.3, 0.1, 0.3);
-	model2->SetPosition(2,1,1);
+	// model2->SetScale(0.3, 0.1, 0.3);
+	// model2->SetPosition(2,1,1);
 
-	model3->SetScale( 0.4, 0.1, 0.1 );
-	model3->SetPosition(-2, -1, -1);
+	// model3->SetScale( 0.4, 0.1, 0.1 );
+	// model3->SetPosition(-2, -1, -1);
 
 
 	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
