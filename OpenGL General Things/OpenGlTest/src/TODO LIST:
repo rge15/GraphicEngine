@@ -1,0 +1,25 @@
+TODO LIST:
+
+** Elementos necesarios **
+
+- Investigar proceso cargar malla
+- Investigar clase model
+- Investigar clase malla
+
+- Investigar Camaras
+
+- Investigar como transformar la malla para global space
+
+
+** Motor gráfico **
+
+- Investigar implementación unión malla con shaders para cada entidad
+
+- Investigar clase SceneManager
+- Investigar clase cargar recursos (malla, modelo, texturas, shaders)
+
+------------- ENGINE 2.0 ------------------
+- Investigar Luces
+- Investigar clase textura
+
+
