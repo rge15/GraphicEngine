@@ -13,8 +13,15 @@ namespace Ocacho
 		glm::vec3 position;
 		glm::vec3 vertexNormals;
 		glm::vec2 textureCoords;
-		// glm::ivec4 JointInfluence;
-		// glm::vec4  InfluenceWeight;
+
+		Vertex(
+			glm::vec3 p_pos,
+			glm::vec3 p_normal,
+			glm::vec2 p_UV ):
+			position { p_pos },
+			vertexNormals { p_normal },
+			textureCoords { textureCoords }
+		{}
 	};
 
 }

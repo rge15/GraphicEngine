@@ -9,7 +9,6 @@
 
 namespace Ocacho
 {
-
 	class VideoDriver
 	{
 		private:
@@ -31,9 +30,10 @@ namespace Ocacho
 
 			void InitGlad() { int glad = gladLoadGL(); assert(glad); }
 
-			GLFWwindow* const CreateWindow( const std::size_t p_width,
-											const std::size_t p_heigth, 
-											const std::string p_windowTitle)
+			GLFWwindow* const CreateWindow(
+				const std::size_t p_width,
+				const std::size_t p_heigth, 
+				const std::string p_windowTitle)
 			{
 				return glfwCreateWindow(p_width, p_heigth, p_windowTitle.c_str() , NULL, NULL);
 			}
@@ -55,10 +55,11 @@ namespace Ocacho
 
 			void EndScene();
 			
-			void 	SetWindowViewport(	const std::size_t p_widthMax, 
-										const std::size_t p_heigthMax,
-										const std::size_t p_widthMin = 0,
-										const std::size_t p_heigthMin = 0)
+			void 	SetWindowViewport(	
+				const std::size_t p_widthMax, 
+				const std::size_t p_heigthMax,
+				const std::size_t p_widthMin = 0,
+				const std::size_t p_heigthMin = 0)
 			{
 				glViewport( p_widthMin, p_heigthMin, p_widthMax, p_heigthMax);
 			}

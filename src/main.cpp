@@ -20,10 +20,10 @@ int main()
 
 	std::size_t MaterialID = fileManager_->AddMaterial(materialList);
 
-	std::size_t MaterialID2 = fileManager_->AddMaterial(glm::vec3(1.0, 0.3, 1.0));
+	std::size_t MaterialID2 = fileManager_->AddMaterial(glm::vec3(1.0, 0.0, 0.0));
 
-	std::size_t ShaderID = fileManager_->LoadShader("/home/rodrigo/Escritorio/PersonalProj/Repositories/GraphicEngine/shaders/baseVertexShader.vs",
-													"/home/rodrigo/Escritorio/PersonalProj/Repositories/GraphicEngine/shaders/baseFragmentShader.fs");
+	std::size_t ShaderID = fileManager_->LoadShader("/home/rodrigo/Escritorio/PersonalProj/Repositories/GraphicEngine/src/Shaders/baseVertexShader.vs",
+													"/home/rodrigo/Escritorio/PersonalProj/Repositories/GraphicEngine/src/Shaders/baseFragmentShader.fs");
 
 	scene_->SetShader(ShaderID);
 

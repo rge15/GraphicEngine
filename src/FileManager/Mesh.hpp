@@ -31,10 +31,6 @@ namespace Ocacho
 				  vertex_ { p_vertexList },
 				  index_ { p_indexList }
 				{
-				//	for(int i = 0 ; i < vertex_.size() ; i++)
-				//	{
-				//		std::cout << "Vertex " << i << " : " << vertex_.at(i).position.x << " , " << vertex_.at(i).position.y << " , " << vertex_.at(i).position.z << '\n';
-				//	}
 					SetUpMesh();
 				}
 
