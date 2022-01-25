@@ -75,6 +75,4 @@ namespace Ocacho
 			model->Draw( shader_ );
 		}
 	}
-
-
 }

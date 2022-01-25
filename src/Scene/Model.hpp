@@ -1,3 +1,19 @@
+/**
+ * @file Model.hpp
+ * @author OcachoGames-Rodrigo (ocachogames@gmail.com)
+ * @brief Model of Ocacho Graphic Engine Scene
+ * 
+ * A model object wil have the info for each object
+ * in a scene.
+ * 
+ * At least right now, each model will have 
+ * only 1 mesh and 1 material 
+ * 
+ * @version 0.1
+ * @date 2022-01-24
+ * 
+ * @copyright Copyright (c) 2021
+ */
 #pragma once
 
 #include "SceneNode.hpp"
@@ -9,12 +25,23 @@ namespace Ocacho
 {
 	class Model : public SceneNode
 	{
-		public: 
+		private:
+			// Model matrix of each model
 			glm::mat4 model_ { glm::mat4(1.0f) };
-
+			
+			// Pointer to the model mesh
 			Mesh*		meshes_;
+
+			//Pointer to the model material
 			Material*	material_;
 
+			/**
+			 * @brief	Calculates the model matrix of the model
+			 * 			with his scene data
+			 */
+			void CalculateModelMatrix();
+
+		public:
 			Model(	Mesh* const p_mesh, 
 					Material* const p_material, 
 					const glm::vec3 p_pos = glm::vec3(0.0f, 0.0f, 0.0f)) :
@@ -29,38 +56,20 @@ namespace Ocacho
 
 			~Model(){};
 
-			//TODO : MATERIAL THINGS
-			//TODO : Hacer que el material setee sus texturas (Mirar LearnOpenGL)
+			/**
+			 * @brief	Draw the model mesh with his material
+			 * 
+			 * @tparam	p_shader Pointer to shader which draws
+			 */
+			void Draw( Shader* const p_shader );
 
-			//TODO : GLSL THINGS
-			//TODO : Investigar y ver el tema de texturas y colores en el shader
+			/**
+			 * @brief	Sets the model matrix of the given shader
+			 * 			with the object model matrix
+			 * 
+			 * @tparam	p_shader Pointer to shader which draws
+			 */
+			void SetModelMatrix(Shader* const p_shader);
 
-			void Draw( Shader* const p_shader )
-			{
-				SetModelMatrix(p_shader);
-				material_->UseMaterial(p_shader);
-				meshes_->Draw();
-			}
-
-			void SetModelMatrix(Shader* const p_shader)
-			{
-				CalculateModelMatrix();
-				p_shader->SetM4("u_model", model_);
-			}
-
-			void CalculateModelMatrix()
-			{
-				model_ = glm::mat4(1.0f);
-
-				//Scale
-				model_ = glm::scale(model_, scale_);
-
-				//Rotation
-				glm::quat quaternion(rotation_);
-				model_ = model_ * glm::mat4_cast(quaternion);
-
-				//Translation
-				model_ = glm::translate(model_, position_);
-			}
 	};
 }

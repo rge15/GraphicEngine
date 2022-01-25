@@ -1,3 +1,16 @@
+/**
+ * @file FileManager.hpp
+ * @author OcachoGames-Rodrigo (ocachogames@gmail.com)
+ * @brief FileManager of Ocacho Graphic Engine
+ * 
+ * The file manager will manage the intancies of each resource
+ * in memory and will manage the acces to the resources content 
+ * 
+ * @version 0.1
+ * @date 2022-01-24
+ * 
+ * @copyright Copyright (c) 2021
+ */
 #pragma once
 
 #include <unordered_map>
@@ -188,7 +201,6 @@ namespace Ocacho
 			);
 
 		public:
-
 
 			FileManager(){
 				loadedMeshes_.reserve(10);

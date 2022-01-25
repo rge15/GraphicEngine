@@ -1,3 +1,21 @@
+/**
+ * @file Scene.hpp
+ * @author OcachoGames-Rodrigo (ocachogames@gmail.com)
+ * @brief Scene of Ocacho Graphic Engine
+ * 
+ * A Scene will manage all the Scene objects
+ * as cameras, models or lights 
+ * 
+ * Right now we can just have 1 camera in the scene
+ * and it doesn't manage lights
+ * 
+ * TODO : Implementación luces
+ * 
+ * @version 0.1
+ * @date 2022-01-24
+ * 
+ * @copyright Copyright (c) 2021
+ */
 #pragma once
 
 #include <vector>
@@ -10,7 +28,6 @@
 
 namespace Ocacho
 {
-
 	class Scene
 	{
 		private:
@@ -30,7 +47,6 @@ namespace Ocacho
 			// Array of unique ptr to models of the scene
 			std::vector<std::unique_ptr<SceneNode>>	models_;
 
-
 			/**
 			 * @brief	Set all the shader data from the scene
 			 * 			as the projection matrix
@@ -49,15 +65,13 @@ namespace Ocacho
 			void	DrawModels();
 
 		public:
-			//TODO : Implementación luces
-			// std::vector<Lights> lights_;
-
 			Scene(const float p_aspectRatio):
 				projection_ { glm::perspective( glm::radians(45.0f), p_aspectRatio, 0.1f, 100.0f ) }
 			{
 				cameras_.reserve(10);
 				models_.reserve(10);
 			};
+
 			~Scene(){};
 
 			/**

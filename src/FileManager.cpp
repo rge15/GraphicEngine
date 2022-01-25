@@ -7,7 +7,9 @@ namespace Ocacho
 		const std::string_view& p_path)
 	{
 		Assimp::Importer modelImporter;
-		const aiScene* const scene  = modelImporter.ReadFile(p_path.data(), loadMeshFlags);
+		const aiScene* const scene  = modelImporter.ReadFile(
+			p_path.data(),
+			loadMeshFlags);
 
 		const aiMesh* const mesh { SearchMeshInScene(scene) };
 
@@ -186,7 +188,8 @@ namespace Ocacho
 		const std::size_t p_textureIndex[])
 	{
 		std::vector<Texture*> textures;
-		std::size_t sizeArray = sizeof(p_textureIndex)/sizeof(p_textureIndex[0]);
+		std::size_t sizeArray = 
+			sizeof(p_textureIndex)/sizeof(p_textureIndex[0]);
 
 		assert(!(sizeArray <= 0));
 

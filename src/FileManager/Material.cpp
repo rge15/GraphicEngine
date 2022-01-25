@@ -8,6 +8,9 @@ namespace Ocacho
 		SetShaderData(p_shader);
 	}
 
+	//-------------------------------------------------------------------------
+	//-------------------------------------------------------------------------
+
 	void Material::SetShaderData(Shader* const p_shader)
 	{
 		if(textures_.size() != 0)
@@ -22,7 +25,10 @@ namespace Ocacho
 		}
 	}
 
-	//En estos momentos este método solo activa la primera textura pq solo vamos a hacer uso de una
+	//-------------------------------------------------------------------------
+	//-------------------------------------------------------------------------
+
+	//En estos momentos este método solo se activará la primera textura pq solo vamos a hacer uso de una
 	void Material::LoadTexturesInShader(Shader* const p_shader)
 	{
 		for(std::size_t i = 0; i < textures_.size(); i++)
@@ -36,9 +42,19 @@ namespace Ocacho
     	glActiveTexture(GL_TEXTURE0);
 	}
 
+	//-------------------------------------------------------------------------
+	//-------------------------------------------------------------------------
+
 	void Material::LoadBaseColorInShader(Shader* const p_shader)
 	{
 		p_shader->SetFloat3("u_baseColor", baseColor_);
 	}
 
+	//-------------------------------------------------------------------------
+	//-------------------------------------------------------------------------
+	
+	void Material::SetBaseColor( const glm::vec3 p_color )
+	{
+		baseColor_ = p_color;
+	}
 }

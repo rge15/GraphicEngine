@@ -1,3 +1,17 @@
+/**
+ * @file Mesh.hpp
+ * @author OcachoGames-Rodrigo (ocachogames@gmail.com)
+ * @brief Mesh of Ocacho Graphic Engine
+ * 
+ * A mesh will have the info of the vertex
+ * and the faces of the mesh. It manages the
+ * openGl buffer data. 
+ * 
+ * @version 0.1
+ * @date 2022-01-24
+ * 
+ * @copyright Copyright (c) 2021
+ */
 #pragma once
 
 #include <vector>
@@ -15,14 +29,19 @@ namespace Ocacho
 	class Mesh
 	{
 		private:
+			//	Vector of vertex of the mesh
 			std::vector<Vertex> 	vertex_;
-			std::vector<FaceIndex>	index_;
-			//Esto por ahora será un solo material, 
-			//en futuros upgrades hará falta un vector
-			//de materials
 
-			glID VBO_;
+			//	Vector of the face index of the mesh
+			std::vector<FaceIndex>	index_;
+
+			// Vertex Array OpenGl Object ID
 			glID VAO_;
+
+			// Vertex Buffer OpenGl Object ID for Vertex Data
+			glID VBO_;
+
+			// ELement Buffer OpenGl Object ID for Face Data
 			glID EBO_;
 		
 		public:
@@ -36,8 +55,14 @@ namespace Ocacho
 
 			~Mesh(){};
 
+			/**
+			 * @brief	Generates the openGl buffers eith the mesh data
+			 */
 			void SetUpMesh();
-			
+
+			/**
+			 * @brief	Draws the buffers openGl data
+			 */			
 			void Draw();
 	};
 }
