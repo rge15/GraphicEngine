@@ -40,7 +40,7 @@ namespace Ocacho{
 			glm::vec3 	cameraDirection_;
 
 			// Flag for knowing if we have to use the object
-			std::size_t cameraActive_ 		{ 0 };
+			u_int8_t cameraActive_ 		{ 0 };
 
 			// Target position to view
 			glm::vec3 	target_	 	 		{ 0.0f, 0.0f, 0.0f };
@@ -71,7 +71,7 @@ namespace Ocacho{
 		public:
 			Camera( const glm::vec3 p_pos = glm::vec3(1.0f, 1.0f, 1.0f), 
 					const glm::vec3 p_lookAt = glm::vec3(0.0f, 0.0f, 0.0f),
-					const std::size_t p_activeCamera  = 1) :
+					const u_int8_t p_activeCamera  = 1) :
 					SceneNode( p_pos ),
 					cameraActive_ { p_activeCamera },
 					target_ { p_lookAt }
@@ -95,6 +95,13 @@ namespace Ocacho{
 			 */
 			glm::mat4 GetViewMatrix();
 
+			/**
+			 * @brief	Checks if the camera is active or not
+			 * 
+			 * @return	cameraActive_ value
+			 */
+			u_int8_t IsCameraActive();
+			
 			/**
 			 * @brief	Sets the target_ data position to tha camera target 
 			 * 

@@ -6,7 +6,7 @@ namespace Ocacho
 	SceneNode* Scene::AddCamera(
 		const glm::vec3 p_pos, 
 		const glm::vec3 p_lookAt,
-		const std::size_t p_activeCamera)
+		const u_int8_t p_activeCamera)
 	{
 		cameras_.emplace_back( std::make_unique<Camera>(p_pos, p_lookAt, p_activeCamera) );
 
@@ -57,7 +57,7 @@ namespace Ocacho
 		for(std::size_t i = 0 ; i < cameras_.size() ; i++ )
 		{
 			auto* camera = static_cast<Camera *>(cameras_.at(i).get()); 
-			if( camera->cameraActive_ )
+			if( camera->IsCameraActive() )
 			{
 				shader_->SetM4("u_view", camera->GetViewMatrix());
 			}

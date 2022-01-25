@@ -6,7 +6,7 @@ namespace Ocacho
 	{
 		int width, height;
 
-		glfwGetFramebufferSize(window_, &width, &height);
+		glfwGetFramebufferSize(window_.get(), &width, &height);
 		float ratio = (float)width / (float)height;
 
 		scene_->SetProjection(ratio);
@@ -22,7 +22,7 @@ namespace Ocacho
 
 	void VideoDriver::EndScene()
 	{
-		glfwSwapBuffers(window_); 
+		glfwSwapBuffers(window_.get()); 
 		glfwPollEvents();
 	}
 

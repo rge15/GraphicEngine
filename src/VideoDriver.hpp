@@ -12,19 +12,13 @@ namespace Ocacho
 	class VideoDriver
 	{
 		private:
-			GLFWwindow* window_ { nullptr };
+			std::unique_ptr<GLFWwindow, void(*)( GLFWwindow* )> window_ { nullptr, nullptr };
 
 			Scene* scene_;
 		
-			void SetWindow(GLFWwindow* const p_window)
-			{
-				if(p_window != nullptr)
-					window_ = p_window;
-			}
-		
 		public:
 			VideoDriver(){ InitVideoDriver(); };
-			~VideoDriver(){ glfwDestroyWindow(window_); glfwTerminate(); };
+			~VideoDriver(){  };
 
 			void InitVideoDriver();
 
@@ -35,13 +29,27 @@ namespace Ocacho
 				const std::size_t p_heigth, 
 				const std::string p_windowTitle)
 			{
-				return glfwCreateWindow(p_width, p_heigth, p_windowTitle.c_str() , NULL, NULL);
+				std::unique_ptr<GLFWwindow, void(*)( GLFWwindow* )> window{
+					glfwCreateWindow(p_width, p_heigth, p_windowTitle.c_str() , NULL, NULL),
+					DropWindow
+				};
+
+				window_ = std::move(window);
+				
+				assert(window_.get());
+
+				return window_.get();
 			}
 
-			void MakeWindowCurrentContext(GLFWwindow* const p_window)
+			static void DropWindow( GLFWwindow* p_window )
 			{
-				glfwMakeContextCurrent(p_window);
-				SetWindow(p_window);
+				glfwDestroyWindow(p_window);
+				glfwTerminate();
+			}
+
+			void MakeWindowCurrentContext()
+			{
+				glfwMakeContextCurrent(window_.get());
 			}
 
 			void SetScene( Scene* const p_scene )

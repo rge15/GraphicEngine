@@ -69,4 +69,11 @@ namespace Ocacho
 		target_ = glm::vec3( p_targetX, p_targetY, p_targetZ);
 	}
 
+	//-------------------------------------------------------------------------
+	//-------------------------------------------------------------------------
+
+	u_int8_t Camera::IsCameraActive()
+	{
+		return cameraActive_;
+	}
 }

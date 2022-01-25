@@ -121,7 +121,7 @@ namespace Ocacho
 			SceneNode* AddCamera(
 				const glm::vec3 p_pos = glm::vec3(1.0f, 1.0f, 1.0f), 
 				const glm::vec3 p_lookAt = glm::vec3(0.0f, 0.0f, 0.0f),
-				const std::size_t p_activeCamera  = 1);
+				const u_int8_t p_activeCamera  = 1);
 
 			/**
 			 * @brief	Add a model into the scene

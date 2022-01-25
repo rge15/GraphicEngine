@@ -32,7 +32,6 @@ namespace Ocacho
 	class Device
 	{
 		private:
-
 			//	Unique Ptr to the file manager 
 			std::unique_ptr<FileManager> fileManager_ { 
 				std::make_unique<FileManager>()};
@@ -45,25 +44,30 @@ namespace Ocacho
 			std::unique_ptr<Scene> scene_ { 
 				std::make_unique<Scene>( getAspectRatio() )};
 
-			//TODO : Mover window y todo lo suyo a videodriver
-			//TODO : Ver tmbn como va a ir con el tema de ImGui
-			//TODO : Tambien el Init Window
-			GLFWwindow* window_;
+			// Ptr to the window managed by Video Driver
+			GLFWwindow* window_ { nullptr };
 			
-			int width_; 
+			// Width of the window
+			int width_;
+
+			// Width of the window
 			int height_;
 
-			std::string windowTitle_;
+			// Title of the window
+			std::string_view windowTitle_;
+
+			void SetWindowCallbacks();
+
+			void InitWindow();
+
 
 		public:
-						
-
 			Device( 
 				int p_width = 640, 
 				int p_height = 480, 
 				std::string p_windowTitle = "Title") :
 				width_ { p_width }, height_ { p_height },
-				windowTitle_ { p_windowTitle }
+				windowTitle_ { p_windowTitle.c_str() }
 				{
 					InitWindow();
 					scene_->SetFileManagerAcces( fileManager_.get() );
@@ -72,50 +76,16 @@ namespace Ocacho
 			
 			~Device(){}
 
-			float getAspectRatio() { return (float)width_/(float)height_; }
-	
-			void SetWindowCallbacks();
+			float getAspectRatio();
 
-			const uint8_t IsWindowOpen() { return !glfwWindowShouldClose(window_); };
+			const uint8_t IsWindowOpen();
 
-			void CloseWindow() { glfwSetWindowShouldClose(window_, GL_TRUE); };
+			void CloseWindow();
 
-			VideoDriver* const getVideoDriver()
-			{
-				return videoDriver_.get();
-			}
+			VideoDriver* const getVideoDriver();
 
-			Scene* const getScene()
-			{
-				return scene_.get();
-			}
+			Scene* const getScene();
 
-			FileManager* const getFileManager()
-			{
-				return fileManager_.get();
-			}
-
-			void InitWindow()
-			{
-				window_ = videoDriver_->CreateWindow(
-					width_, 
-					height_, 
-					windowTitle_);
-				assert(window_);
-
-				videoDriver_->MakeWindowCurrentContext(window_);
-
-				//VideoDriver Init Glad
-				videoDriver_->InitGlad();
-
-				//Window Set Viewport
-				videoDriver_->SetWindowViewport(
-					width_, 
-					height_);
-
-				//Driver Set Callbacks
-				SetWindowCallbacks();
-			}
-
+			FileManager* const getFileManager();
 	};
 }
