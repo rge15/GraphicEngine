@@ -133,7 +133,9 @@ namespace Ocacho
 			
 			return glm::vec2(vertexUV.x, vertexUV.y);
 		}else
+		{
 			return glm::vec2(0.0f, 0.0f);
+		}
 	}
 
 	//-------------------------------------------------------------------------

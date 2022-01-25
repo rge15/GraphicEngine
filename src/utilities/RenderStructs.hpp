@@ -20,7 +20,7 @@ namespace Ocacho
 			glm::vec2 p_UV ):
 			position { p_pos },
 			vertexNormals { p_normal },
-			textureCoords { textureCoords }
+			textureCoords { p_UV }
 		{}
 	};
 
