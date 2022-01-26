@@ -42,7 +42,7 @@ namespace Ocacho
 			
 			//	Unique Ptr to the scene
 			std::unique_ptr<Scene> scene_ { 
-				std::make_unique<Scene>( getAspectRatio() )};
+				std::make_unique<Scene>()};
 
 			// Ptr to the window managed by Video Driver
 			GLFWwindow* window_ { nullptr };
@@ -76,6 +76,7 @@ namespace Ocacho
 				windowTitle_ { p_windowTitle.c_str() }
 				{
 					InitWindow();
+					scene_->SetProjection( getAspectRatio() );
 					scene_->SetFileManagerAcces( fileManager_.get() );
 					videoDriver_->SetScene( scene_.get() );
 				}

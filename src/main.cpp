@@ -10,7 +10,7 @@ int main()
 	Ocacho::FileManager* fileManager_ = device_.getFileManager();
 	Ocacho::Scene*		 scene_ = device_.getScene();
 
-	//Aquí se cargan los ficheros
+	// //Aquí se cargan los ficheros
 	std::size_t MayaID = fileManager_->LoadMesh("/home/rodrigo/Escritorio/PersonalProj/firstGraphicEngine/models/Suzzane.obj");
 	std::size_t MayaID2 = fileManager_->LoadMesh("/home/rodrigo/Escritorio/PersonalProj/firstGraphicEngine/models/prueba.obj");
 
@@ -46,7 +46,7 @@ int main()
 	model3->SetPosition(-2, -1, -1);
 
 
-	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	// // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	while(device_.IsWindowOpen())
 	{
@@ -62,4 +62,5 @@ int main()
 
 		videoDriver_->EndScene();
 	}
+
 }

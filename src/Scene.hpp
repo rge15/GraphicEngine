@@ -36,10 +36,10 @@ namespace Ocacho
 			FileManager* deviceFileManager_;
 
 			// Pointer to the scene shader
-			Shader*	shader_;
+			Shader*	shader_ { nullptr };
 
 			// Projection matrix of the scene
-			glm::mat4	projection_;
+			glm::mat4 projection_;
 
 			// Array of unique ptr to cameras of the scene
 			std::vector<std::unique_ptr<SceneNode>>	cameras_;
@@ -65,8 +65,7 @@ namespace Ocacho
 			void	DrawModels();
 
 		public:
-			Scene(const float p_aspectRatio):
-				projection_ { glm::perspective( glm::radians(45.0f), p_aspectRatio, 0.1f, 100.0f ) }
+			Scene()
 			{
 				cameras_.reserve(10);
 				models_.reserve(10);

@@ -35,10 +35,13 @@ namespace Ocacho
 
 	void Scene::DrawAll()
 	{
-		shader_->UseShader();
-		SetSceneShadersUniforms();
-		SetSceneCameraShaderUniforms();
-		DrawModels();
+		if(shader_ != nullptr)
+		{
+			shader_->UseShader();
+			SetSceneShadersUniforms();
+			SetSceneCameraShaderUniforms();
+			DrawModels();
+		}
 	}
 
 	//-------------------------------------------------------------------------
