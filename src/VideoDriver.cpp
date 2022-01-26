@@ -95,8 +95,8 @@ namespace Ocacho
 	void	VideoDriver::SetWindowViewport(	
 		const std::size_t p_widthMax, 
 		const std::size_t p_heigthMax,
-		const std::size_t p_widthMin = 0,
-		const std::size_t p_heigthMin = 0)
+		const std::size_t p_widthMin,
+		const std::size_t p_heigthMin)
 	{
 		glViewport( p_widthMin, p_heigthMin, p_widthMax, p_heigthMax);
 	}

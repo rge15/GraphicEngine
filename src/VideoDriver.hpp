@@ -55,7 +55,11 @@ namespace Ocacho
 			 * 
 			 * @tparam	p_window Window to be destroyed
 			 */
-			static void DropWindow( GLFWwindow* p_window );
+			static void DropWindow( GLFWwindow* p_window )
+			{
+				glfwDestroyWindow(p_window);
+				glfwTerminate();
+			}
 
 			/**
 			 * @brief	This method sets the videodriver window
